@@ -18,7 +18,7 @@ for (int i = 0; i <= n - m; i++) {
     }
 int main() {
     string text = "Seecs nust";
-// 1. Pattern at the beginning
+
     cout << "Case 1: " << findSubstring(text, "Seecs") << endl;   // Expected 0
 // 2. Pattern at the end
     cout << "Case 2: " << findSubstring(text, "nust") << endl;    // Expected 6
