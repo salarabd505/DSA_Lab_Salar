@@ -1,38 +1,29 @@
-//Finding indices of aall the given elements in a array
 #include <iostream>
-#include <vector>
+#include <string>
 using namespace std;
-vector<int> findAllIndices(const vector<int>& arr, int key) {
-    vector<int> indices;
-for (int i = 0; i < arr.size(); i++) {
-        if (arr[i] == key) {
-            indices.push_back(i);
+int findSubstring(const string &text, const string &pattern) {
+    if (pattern.empty()) 
+        return 0;  // by convention, empty string is found at index 0
+    int n = text.size();
+    int m = pattern.size();
+for (int i = 0; i <= n - m; i++) {
+        int j = 0;
+        while (j < m && text[i + j] == pattern[j]) {
+            j++; }
+        if (j == m) {
+            return i; // found pattern starting at i
         }
-    }return indices;
-}
+    }
+    return -1; // not found 
+    }
 int main() {
-    // Test Case 1: Key present once (7)
-    vector<int> arr1 = {1, 3, 7, 3, 5, 3, 9};
-    int key1 = 7;
-    vector<int> result1 = findAllIndices(arr1, key1);
-    cout << "Indices of " << key1 << ": ";
-    if (result1.empty()) cout << "Not found";
-    else for (int i : result1) cout << i << " ";
-    cout << endl;
-    // Test Case 2: for finding the index of last element
-    vector<int> arr2 = {1, 3, 7, 3, 5, 3, 9};
-    int key2 = 9;
-    vector<int> result2 = findAllIndices(arr2, key2);
-    cout << "Indices of " << key2 << ": ";
-    if (result2.empty()) cout << "Not found";
-    else for (int i : result2) cout << i << " ";
-    cout << endl; 
-    // Test Case 3: for finding the index of first element
-    vector<int> arr3 = {10, 20, 30, 40};
-    int key3 = 10;
-    vector<int> result3 = findAllIndices(arr3, key3);
-    cout << "Indices of " << key3 << ": ";
-    if (result3.empty()) cout << "Not found";
-    else for (int i : result3) cout << i << " ";
-    cout << endl;
-    return 0;}
+    string text = "Seecs nust";
+// 1. Pattern at the beginning
+    cout << "Case 1: " << findSubstring(text, "Seecs") << endl;   // Expected 0
+// 2. Pattern at the end
+    cout << "Case 2: " << findSubstring(text, "nust") << endl;    // Expected 6
+// 3. Pattern not present
+    cout << "Case 3: " << findSubstring(text, "FAST") << endl;    // Expected -1
+// 4. Empty pattern
+    cout << "Case 4: " << findSubstring(text, "") << endl;        // Expected 0
+return 0;}
